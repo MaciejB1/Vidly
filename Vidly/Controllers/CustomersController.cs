@@ -10,21 +10,30 @@ namespace Vidly.Controllers
 {
     public class CustomersController : Controller
     {
+        public List<Customer> customers = new List<Customer>      //hard code data
+        {
+            new Customer() {Id = 1, Name = "Jan Kowalski"},
+            new Customer() {Id = 2, Name = "Anna Pawlik"}
+        };
+
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = new List<Customer>      //hard code data
-            {
-                new Customer() {Name = "Jan Kowalski"},
-                new Customer() {Name = "Anna Pawlik"}
-            };
-
             var CustomersViewModel = new CustomerViewModel
             {
                 Customers = customers
             };
             
             return View(CustomersViewModel);
+        }
+
+        [Route("Customers/Details/{id}")]
+        public ActionResult Details(int id)
+        {
+            Customer customerDetails = new Customer();
+            customerDetails = customers.Find(x => x.Id == id);
+
+            return View(customerDetails);
         }
     }
 }
