@@ -1,2 +1,2 @@
 # Vidly
-### ASP .NET Framework Application
+### ASP.NET MVC Application
