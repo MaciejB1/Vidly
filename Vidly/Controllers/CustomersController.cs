@@ -38,6 +38,8 @@ namespace Vidly.Controllers
             if (customerDetails == null)
                 return HttpNotFound();
 
+            customerDetails.MembershipType = _context.MembershipTypes.SingleOrDefault(q => q.Id == customerDetails.Id);
+
             return View(customerDetails);
         }
     }
