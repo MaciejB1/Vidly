@@ -216,9 +216,22 @@
     <Compile Include="Migrations\201911112217429_ApplyAnnotationForBirthday.Designer.cs">
       <DependentUpon>201911112217429_ApplyAnnotationForBirthday.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911122243377_AddMovieDetailsAndGenre.cs" />
+    <Compile Include="Migrations\201911122243377_AddMovieDetailsAndGenre.Designer.cs">
+      <DependentUpon>201911122243377_AddMovieDetailsAndGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911122246497_ApplyAnnotationForMovie.cs" />
+    <Compile Include="Migrations\201911122246497_ApplyAnnotationForMovie.Designer.cs">
+      <DependentUpon>201911122246497_ApplyAnnotationForMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911122252544_AddGenres.cs" />
+    <Compile Include="Migrations\201911122252544_AddGenres.Designer.cs">
+      <DependentUpon>201911122252544_AddGenres.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -363,6 +376,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911112217429_ApplyAnnotationForBirthday.resx">
       <DependentUpon>201911112217429_ApplyAnnotationForBirthday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911122243377_AddMovieDetailsAndGenre.resx">
+      <DependentUpon>201911122243377_AddMovieDetailsAndGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911122246497_ApplyAnnotationForMovie.resx">
+      <DependentUpon>201911122246497_ApplyAnnotationForMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911122252544_AddGenres.resx">
+      <DependentUpon>201911122252544_AddGenres.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
