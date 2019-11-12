@@ -1,4 +1,7 @@
-﻿@model Vidly.Models.Customer
+﻿@using Microsoft.Ajax.Utilities
+@model Vidly.Models.Customer
+@using System.Web.UI.WebControls
+@using Vidly.ViewModels
 
 @{
     ViewBag.Title = "Details";
@@ -6,3 +9,14 @@
 }
 
 <h2>@Model.Name</h2>
+<ul>
+    <li>
+        Membership Type: @Model.MembershipType.Name
+    </li>
+    @if (Model.Birthday.HasValue)
+    {
+        <li>
+            Birthday: @Html.DisplayFor(x => Model.Birthday)
+        </li>
+    }
+</ul>
