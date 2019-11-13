@@ -11,21 +11,21 @@ namespace Vidly.Controllers
 {
     public class CustomersController : Controller
     {
-        private ApplicationDbContext _context;
+        private ApplicationDbContext _Context;
 
         public CustomersController()
         {
-            _context = new ApplicationDbContext();
+            _Context = new ApplicationDbContext();
         }
         protected override void Dispose(bool disposing)
         {
-            _context.Dispose();
+            _Context.Dispose();
         }
 
         // GET: Customers
         public ActionResult Index()
         {
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
+            var customers = _Context.Customers.Include(c => c.MembershipType).ToList();
             
             return View(customers);
         }
@@ -33,12 +33,11 @@ namespace Vidly.Controllers
  //       [Route("Customers/Details/{id}")]
         public ActionResult Details(int? id)
         {
-            var customerDetails = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customerDetails = _Context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
 
             if (customerDetails == null)
                 return HttpNotFound();
 
-            customerDetails.MembershipType = _context.MembershipTypes.SingleOrDefault(q => q.Id == customerDetails.Id);
 
             return View(customerDetails);
         }
