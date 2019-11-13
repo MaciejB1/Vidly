@@ -19,6 +19,7 @@ namespace Vidly.Models
         public DateTime ReleaseDate { get; set; }
         [Required]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:year-month-day}", ApplyFormatInEditMode = true)]
         public DateTime DateAdded { get; set; }
         [Required]
         public byte NumberInStock { get; set; }

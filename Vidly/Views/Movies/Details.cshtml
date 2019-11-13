@@ -11,10 +11,10 @@
     <li>
         Genre: @Model.Genre.Name
     <li>
-        Release Date: @Html.DisplayFor(x => Model.ReleaseDate)
+        Release Date: @Model.ReleaseDate.DayOfWeek, @Model.ReleaseDate.ToString("MMMM") @Model.ReleaseDate.Day, @Model.ReleaseDate.Year
     </li>
     <li>
-        Date Added: @Html.DisplayFor(x => Model.DateAdded)
+        Date Added: @Model.DateAdded.DayOfWeek, @Model.DateAdded.ToString("MMMM") @Model.DateAdded.Day, @Model.DateAdded.Year
     </li>
     <li>
         Number in stock: @Model.NumberInStock
