@@ -40,5 +40,10 @@ namespace Vidly.Controllers
 
             return View(movieDetails);
         }
+
+        public ActionResult MovieForm()
+        {
+            return View();
+        }
     }
 }
