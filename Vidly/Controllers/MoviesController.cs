@@ -41,7 +41,7 @@ namespace Vidly.Controllers
             return View(movieDetails);
         }
 
-        public ActionResult MovieForm()
+        public ActionResult New()
         {
             var genres = _Context.Genres.ToList();
 
@@ -50,7 +50,7 @@ namespace Vidly.Controllers
                 Genres = genres
             };
 
-            return View(viewModel);
+            return View("MovieForm", viewModel);
         }
 
         [HttpPost]
@@ -90,5 +90,10 @@ namespace Vidly.Controllers
 
             return View("MovieForm", viewModel);
         }
+//        public ActionResult New()
+//        {
+//
+//            return View("MovieForm");
+//        }
     }
 }
