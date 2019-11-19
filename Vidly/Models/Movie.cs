@@ -9,7 +9,6 @@ namespace Vidly.Models
     public class Movie
     {
         [Key]
-        [Required]
         public int Id { get; set; }
         [Required]
         [StringLength(255)]
@@ -25,7 +24,6 @@ namespace Vidly.Models
         public byte NumberInStock { get; set; }
         [Required]
         public byte GenreId { get; set; }
-        [Required]
         public Genre Genre { get; set; }
     }
 }
