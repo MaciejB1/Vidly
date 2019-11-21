@@ -23,7 +23,8 @@ namespace Vidly.Controllers
             _Context.Dispose();
         }
 
-        public ActionResult CustomerForm()
+
+        public ActionResult New()
         {
             var membershipTypes = _Context.MembershipTypes.ToList();
 
@@ -32,12 +33,22 @@ namespace Vidly.Controllers
                 MembershipTypes = membershipTypes
             };
 
-            return View(viewModel);
+            return View("CustomerForm", viewModel);
         }
 
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel()
+                {
+                    Customer = customer,
+                    MembershipTypes = _Context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm", viewModel);
+            }
+
             if(customer.Id == 0)
                 _Context.Customers.Add(customer);
             else
