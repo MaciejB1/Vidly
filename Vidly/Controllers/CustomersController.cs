@@ -39,7 +39,8 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
-            if (!ModelState.IsValid)
+            customer.MembershipType = new MembershipType();
+            if(!ModelState.IsValid)
             {
                 var viewModel = new CustomerFormViewModel()
                 {
@@ -48,20 +49,23 @@ namespace Vidly.Controllers
                 };
                 return View("CustomerForm", viewModel);
             }
-
-            if(customer.Id == 0)
-                _Context.Customers.Add(customer);
             else
             {
-                var customerInDb = _Context.Customers.Single(c => c.Id == customer.Id);
-                customerInDb.Name = customer.Name;
-                customerInDb.Birthday = customer.Birthday;
-                customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
-                customerInDb.MembershipTypeId = customer.MembershipTypeId;
-            }
-            _Context.SaveChanges();
+                if (customer.Id == 0)
+                    _Context.Customers.Add(customer);
+                else
+                {
+                    var customerInDb = _Context.Customers.Single(c => c.Id == customer.Id);
+                    customerInDb.Name = customer.Name;
+                    customerInDb.Birthday = customer.Birthday;
+                    customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+                    customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                }
 
-            return RedirectToAction("Index", "Customers");
+                _Context.SaveChanges();
+
+                return RedirectToAction("Index", "Customers");
+            }
         }
 
         // GET: Customers
