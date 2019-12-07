@@ -38,6 +38,7 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
             customer.MembershipType = new MembershipType();
@@ -53,7 +54,10 @@ namespace Vidly.Controllers
             else
             {
                 if (customer.Id == 0)
+                {
+                    customer.Id = 0;
                     _Context.Customers.Add(customer);
+                }
                 else
                 {
                     var customerInDb = _Context.Customers.Single(c => c.Id == customer.Id);
