@@ -23,7 +23,6 @@ namespace Vidly.Controllers
             _Context.Dispose();
         }
 
-
         public ActionResult New()
         {
             var membershipTypes = _Context.MembershipTypes.ToList();
@@ -41,7 +40,7 @@ namespace Vidly.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
-            customer.MembershipType = new MembershipType();
+            //customer.MembershipType = new MembershipType();
             if(!ModelState.IsValid)
             {
                 var viewModel = new CustomerFormViewModel()
