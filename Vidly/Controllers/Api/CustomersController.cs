@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using Vidly.Models;
 
@@ -65,6 +64,19 @@ namespace Vidly.Controllers.Api
             customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
             customerInDb.MembershipTypeId = customer.MembershipTypeId;
 
+            _context.SaveChanges();
+        }
+
+        // DELETE /api/customers/1
+        [HttpDelete]
+        public void DeleteCustomer(int id)
+        {
+            var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == id);
+
+            if (customerInDb == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            _context.Customers.Remove(customerInDb);
             _context.SaveChanges();
         }
     }
