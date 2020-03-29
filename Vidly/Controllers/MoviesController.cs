@@ -22,11 +22,9 @@ namespace Vidly.Controllers
             _Context.Dispose();
         }
 
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            var movies = _Context.Movies.Include(m => m.Genre).ToList();
-
-            return View(movies);
+            return View();
         }
 
         public ActionResult Details(int id)
