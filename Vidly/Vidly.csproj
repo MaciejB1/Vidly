@@ -185,12 +185,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\ApplicationSignInManager.cs" />
+    <Compile Include="App_Start\ApplicationUserManager.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\EmailService.cs" />
     <Compile Include="App_Start\MappingProfile.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\SmsService.cs" />
+    <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
@@ -206,68 +209,96 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911082123457_InitialModel.cs" />
-    <Compile Include="Migrations\201911082123457_InitialModel.Designer.cs">
-      <DependentUpon>201911082123457_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations\202004020918385_AddPhoneForRegistration.cs" />
+    <Compile Include="Migrations\202004020918385_AddPhoneForRegistration.Designer.cs">
+      <DependentUpon>202004020918385_AddPhoneForRegistration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911082155538_AddIsSubscribedToCustomer.cs" />
-    <Compile Include="Migrations\201911082155538_AddIsSubscribedToCustomer.Designer.cs">
-      <DependentUpon>201911082155538_AddIsSubscribedToCustomer.cs</DependentUpon>
+    <Compile Include="Migrations\202004020919509_UpdatePhoneForRegistration.cs" />
+    <Compile Include="Migrations\202004020919509_UpdatePhoneForRegistration.Designer.cs">
+      <DependentUpon>202004020919509_UpdatePhoneForRegistration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911082202061_AddMembershipType.cs" />
-    <Compile Include="Migrations\201911082202061_AddMembershipType.Designer.cs">
-      <DependentUpon>201911082202061_AddMembershipType.cs</DependentUpon>
+    <Compile Include="Migrations\InitialModel.cs" />
+    <Compile Include="Migrations\InitialModel.Designer.cs">
+      <DependentUpon>InitialModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911090930216_PopulateMembershipTypes.cs" />
-    <Compile Include="Migrations\201911090930216_PopulateMembershipTypes.Designer.cs">
-      <DependentUpon>201911090930216_PopulateMembershipTypes.cs</DependentUpon>
+    <Compile Include="Migrations\AddIsSubscribedToCustomer.cs" />
+    <Compile Include="Migrations\AddIsSubscribedToCustomer.Designer.cs">
+      <DependentUpon>AddIsSubscribedToCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911090939049_ApplyAnnotationsToCustomerName.cs" />
-    <Compile Include="Migrations\201911090939049_ApplyAnnotationsToCustomerName.Designer.cs">
-      <DependentUpon>201911090939049_ApplyAnnotationsToCustomerName.cs</DependentUpon>
+    <Compile Include="Migrations\AddMembershipType.cs" />
+    <Compile Include="Migrations\AddMembershipType.Designer.cs">
+      <DependentUpon>AddMembershipType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911091550463_AddMembershipTypeName.cs" />
-    <Compile Include="Migrations\201911091550463_AddMembershipTypeName.Designer.cs">
-      <DependentUpon>201911091550463_AddMembershipTypeName.cs</DependentUpon>
+    <Compile Include="Migrations\PopulateMembershipTypes.cs" />
+    <Compile Include="Migrations\PopulateMembershipTypes.Designer.cs">
+      <DependentUpon>PopulateMembershipTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911091557336_ApplyAnnotationsForMembershipTypeName.cs" />
-    <Compile Include="Migrations\201911091557336_ApplyAnnotationsForMembershipTypeName.Designer.cs">
-      <DependentUpon>201911091557336_ApplyAnnotationsForMembershipTypeName.cs</DependentUpon>
+    <Compile Include="Migrations\ApplyAnnotationsToCustomerName.cs" />
+    <Compile Include="Migrations\ApplyAnnotationsToCustomerName.Designer.cs">
+      <DependentUpon>ApplyAnnotationsToCustomerName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911091646591_AddCustomerBirthday.cs" />
-    <Compile Include="Migrations\201911091646591_AddCustomerBirthday.Designer.cs">
-      <DependentUpon>201911091646591_AddCustomerBirthday.cs</DependentUpon>
+    <Compile Include="Migrations\AddMembershipTypeName.cs" />
+    <Compile Include="Migrations\AddMembershipTypeName.Designer.cs">
+      <DependentUpon>AddMembershipTypeName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911112217429_ApplyAnnotationForBirthday.cs" />
-    <Compile Include="Migrations\201911112217429_ApplyAnnotationForBirthday.Designer.cs">
-      <DependentUpon>201911112217429_ApplyAnnotationForBirthday.cs</DependentUpon>
+    <Compile Include="Migrations\ApplyAnnotationsForMembershipTypeName.cs" />
+    <Compile Include="Migrations\ApplyAnnotationsForMembershipTypeName.Designer.cs">
+      <DependentUpon>ApplyAnnotationsForMembershipTypeName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911122243377_AddMovieDetailsAndGenre.cs" />
-    <Compile Include="Migrations\201911122243377_AddMovieDetailsAndGenre.Designer.cs">
-      <DependentUpon>201911122243377_AddMovieDetailsAndGenre.cs</DependentUpon>
+    <Compile Include="Migrations\AddCustomerBirthday.cs" />
+    <Compile Include="Migrations\AddCustomerBirthday.Designer.cs">
+      <DependentUpon>AddCustomerBirthday.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911122246497_ApplyAnnotationForMovie.cs" />
-    <Compile Include="Migrations\201911122246497_ApplyAnnotationForMovie.Designer.cs">
-      <DependentUpon>201911122246497_ApplyAnnotationForMovie.cs</DependentUpon>
+    <Compile Include="Migrations\ApplyAnnotationForBirthday.cs" />
+    <Compile Include="Migrations\ApplyAnnotationForBirthday.Designer.cs">
+      <DependentUpon>ApplyAnnotationForBirthday.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911122252544_AddGenres.cs" />
-    <Compile Include="Migrations\201911122252544_AddGenres.Designer.cs">
-      <DependentUpon>201911122252544_AddGenres.cs</DependentUpon>
+    <Compile Include="Migrations\AddMovieDetailsAndGenre.cs" />
+    <Compile Include="Migrations\AddMovieDetailsAndGenre.Designer.cs">
+      <DependentUpon>AddMovieDetailsAndGenre.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003301831424_SeedUsers.cs" />
-    <Compile Include="Migrations\202003301831424_SeedUsers.Designer.cs">
-      <DependentUpon>202003301831424_SeedUsers.cs</DependentUpon>
+    <Compile Include="Migrations\ApplyAnnotationForMovie.cs" />
+    <Compile Include="Migrations\ApplyAnnotationForMovie.Designer.cs">
+      <DependentUpon>ApplyAnnotationForMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\AddGenres.cs" />
+    <Compile Include="Migrations\AddGenres.Designer.cs">
+      <DependentUpon>AddGenres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\SeedUsers.cs" />
+    <Compile Include="Migrations\SeedUsers.Designer.cs">
+      <DependentUpon>SeedUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\AddPeselToApplicationUser.cs" />
+    <Compile Include="Migrations\AddPeselToApplicationUser.Designer.cs">
+      <DependentUpon>AddPeselToApplicationUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="ViewModels\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="ViewModels\AddPhoneNumberViewModel.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\ConfigureTwoFactorViewModel.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="ViewModels\ExternalLoginListViewModel.cs" />
+    <Compile Include="ViewModels\FactorViewModel.cs" />
+    <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />
+    <Compile Include="ViewModels\ForgotViewModel.cs" />
     <Compile Include="Models\Genre.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ManageLoginsViewModel.cs" />
+    <Compile Include="ViewModels\IndexViewModel.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\ResetPasswordViewModel.cs" />
     <Compile Include="Models\RoleName.cs" />
+    <Compile Include="ViewModels\SendCodeViewModel.cs" />
+    <Compile Include="ViewModels\SetPasswordViewModel.cs" />
+    <Compile Include="ViewModels\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
@@ -562,44 +593,53 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911082123457_InitialModel.resx">
-      <DependentUpon>201911082123457_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004020918385_AddPhoneForRegistration.resx">
+      <DependentUpon>202004020918385_AddPhoneForRegistration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911082155538_AddIsSubscribedToCustomer.resx">
-      <DependentUpon>201911082155538_AddIsSubscribedToCustomer.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004020919509_UpdatePhoneForRegistration.resx">
+      <DependentUpon>202004020919509_UpdatePhoneForRegistration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911082202061_AddMembershipType.resx">
-      <DependentUpon>201911082202061_AddMembershipType.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\InitialModel.resx">
+      <DependentUpon>InitialModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911090930216_PopulateMembershipTypes.resx">
-      <DependentUpon>201911090930216_PopulateMembershipTypes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\AddIsSubscribedToCustomer.resx">
+      <DependentUpon>AddIsSubscribedToCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911090939049_ApplyAnnotationsToCustomerName.resx">
-      <DependentUpon>201911090939049_ApplyAnnotationsToCustomerName.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\AddMembershipType.resx">
+      <DependentUpon>AddMembershipType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911091550463_AddMembershipTypeName.resx">
-      <DependentUpon>201911091550463_AddMembershipTypeName.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\PopulateMembershipTypes.resx">
+      <DependentUpon>PopulateMembershipTypes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911091557336_ApplyAnnotationsForMembershipTypeName.resx">
-      <DependentUpon>201911091557336_ApplyAnnotationsForMembershipTypeName.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\ApplyAnnotationsToCustomerName.resx">
+      <DependentUpon>ApplyAnnotationsToCustomerName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911091646591_AddCustomerBirthday.resx">
-      <DependentUpon>201911091646591_AddCustomerBirthday.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\AddMembershipTypeName.resx">
+      <DependentUpon>AddMembershipTypeName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911112217429_ApplyAnnotationForBirthday.resx">
-      <DependentUpon>201911112217429_ApplyAnnotationForBirthday.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\ApplyAnnotationsForMembershipTypeName.resx">
+      <DependentUpon>ApplyAnnotationsForMembershipTypeName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911122243377_AddMovieDetailsAndGenre.resx">
-      <DependentUpon>201911122243377_AddMovieDetailsAndGenre.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\AddCustomerBirthday.resx">
+      <DependentUpon>AddCustomerBirthday.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911122246497_ApplyAnnotationForMovie.resx">
-      <DependentUpon>201911122246497_ApplyAnnotationForMovie.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\ApplyAnnotationForBirthday.resx">
+      <DependentUpon>ApplyAnnotationForBirthday.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911122252544_AddGenres.resx">
-      <DependentUpon>201911122252544_AddGenres.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\AddMovieDetailsAndGenre.resx">
+      <DependentUpon>AddMovieDetailsAndGenre.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003301831424_SeedUsers.resx">
-      <DependentUpon>202003301831424_SeedUsers.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\ApplyAnnotationForMovie.resx">
+      <DependentUpon>ApplyAnnotationForMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\AddGenres.resx">
+      <DependentUpon>AddGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\SeedUsers.resx">
+      <DependentUpon>SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\AddPeselToApplicationUser.resx">
+      <DependentUpon>AddPeselToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
